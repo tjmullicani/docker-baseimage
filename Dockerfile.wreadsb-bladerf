@@ -1,4 +1,4 @@
-FROM ghcr.io/sdr-enthusiasts/docker-baseimage:rtlsdr
+FROM ghcr.io/tjmullicani/docker-baseimage:bladerf
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -30,13 +30,13 @@ RUN set -x && \
   --branch "dev" \
   --depth 1 \
   --single-branch \
-  'https://github.com/wiedehopf/readsb.git' \
+  'https://github.com/tjmullicani/readsb.git' \
   '/src/readsb' \
   && \
   # readsb: build & install
   pushd /src/readsb && \
   make \
-  RTLSDR=yes \
+  BLADERF=yes \
   AIRCRAFT_HASH_BITS=14 \
   -j "$(nproc)" \
   && \
